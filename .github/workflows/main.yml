@@ -9,11 +9,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      # - name: Cache Docker images.
-      #   uses: ScribeMD/docker-cache@0.5.0
-      #   with:
-      #   key: docker-gdp-test
-
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: false
+          file: ./github/actions/docker-action/Dockerfile
       - name: Hello world action step
         id: hello
         uses: ./.github/actions/docker-action
