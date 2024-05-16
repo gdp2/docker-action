@@ -20,8 +20,8 @@ jobs:
       - if: steps.image-cache.outputs.cache-hit != 'true'
         working-directory: ./.github/actions/docker-action
         run: |
-            docker build .
-            docker save -o ~/image-cache/postgres.tar alpine
+            docker build . -t gdp/build-image
+            docker save -o ~/image-cache/postgres.tar gdp/build-image
   
       - if: steps.image-cache.outputs.cache-hit == 'true'
         run: docker load -i ~/image-cache/postgres.tar
