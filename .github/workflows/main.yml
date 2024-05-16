@@ -20,13 +20,10 @@ jobs:
             key: gdp-cache-key-f234s
 
       - name: Build and push
-        if: steps.cache-primes.outputs.cache-hit != 'true'
         uses: docker/build-push-action@v5
         with:
           push: false
           context: .github/actions/docker-action
-          cache-from: type=local,src=/tmp/docker
-          cache-to: type=local,src=/tmp/docker
       - name: Hello world action step
         id: hello
         uses: ./.github/actions/docker-action
