@@ -13,7 +13,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: false
-          file: ./github/actions/docker-action/Dockerfile
+          context: .github/actions/docker-action
       - name: Hello world action step
         id: hello
         uses: ./.github/actions/docker-action
