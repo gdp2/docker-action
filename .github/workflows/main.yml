@@ -15,7 +15,7 @@ jobs:
         uses: actions/cache@v1
         with:
             path: ~/image-cache
-            key: image-cache-${{ runner.os }}
+            key: image-cache
   
       - if: steps.image-cache.outputs.cache-hit != 'true'
         working-directory: ./.github/actions/docker-action
