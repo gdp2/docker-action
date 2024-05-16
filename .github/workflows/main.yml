@@ -12,13 +12,21 @@ jobs:
       # -
       #   name: Set up Docker Buildx
       #   uses: docker/setup-buildx-action@v3
+      - name: Cache Docker
+        id: cache-primes
+        uses: actions/cache@v4
+        with:
+            path: /tmp/docker
+            key: gdp-cache-key-f234s
+
       - name: Build and push
+        if: steps.cache-primes.outputs.cache-hit != 'true'
         uses: docker/build-push-action@v5
         with:
           push: false
           context: .github/actions/docker-action
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=local,src=/tmp/docker
+          cache-to: type=local,src=/tmp/docker
       - name: Hello world action step
         id: hello
         uses: ./.github/actions/docker-action
