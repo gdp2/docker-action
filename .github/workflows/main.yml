@@ -17,6 +17,8 @@ jobs:
         with:
           push: false
           context: .github/actions/docker-action
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       - name: Hello world action step
         id: hello
         uses: ./.github/actions/docker-action
